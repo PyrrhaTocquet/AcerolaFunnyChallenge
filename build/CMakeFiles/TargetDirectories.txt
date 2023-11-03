@@ -1,0 +1,13 @@
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles/edit_cache.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles/rebuild_cache.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/third_party/CMakeFiles/spirv-reflect.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/third_party/CMakeFiles/imgui.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/third_party/CMakeFiles/edit_cache.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/third_party/CMakeFiles/rebuild_cache.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/shaders/CMakeFiles/shaders-build.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/shaders/CMakeFiles/edit_cache.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/shaders/CMakeFiles/rebuild_cache.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src/CMakeFiles/Pyrrhasterized.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src/CMakeFiles/copy_resources.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src/CMakeFiles/edit_cache.dir
+/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src/CMakeFiles/rebuild_cache.dir
