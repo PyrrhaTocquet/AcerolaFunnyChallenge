@@ -4,6 +4,7 @@
 #include "VulkanImage.h"
 #include "VulkanContext.h"
 #include "Material.h"
+#include "GeometryTools.h"
 
 struct Mesh {
 	std::vector<Vertex> loadingVertices;
@@ -19,6 +20,8 @@ private:
 	VulkanContext* m_context = nullptr;
 	std::vector<Mesh> m_meshes;
 	Transform m_transform;
+
+	std::vector<Meshlet> m_outMeshlets;
 
 	void loadModel(const std::filesystem::path& path);
 	void loadGltf(const std::filesystem::path& path);

@@ -136,7 +136,7 @@ third_party/clean: third_party/CMakeFiles/imgui.dir/clean
 third_party/CMakeFiles/spirv-reflect.dir/all:
 	$(MAKE) $(MAKESILENT) -f third_party/CMakeFiles/spirv-reflect.dir/build.make third_party/CMakeFiles/spirv-reflect.dir/depend
 	$(MAKE) $(MAKESILENT) -f third_party/CMakeFiles/spirv-reflect.dir/build.make third_party/CMakeFiles/spirv-reflect.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=32,33,34 "Built target spirv-reflect"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=33,34,35 "Built target spirv-reflect"
 .PHONY : third_party/CMakeFiles/spirv-reflect.dir/all
 
 # Build rule for subdir invocation for target.
@@ -162,7 +162,7 @@ third_party/CMakeFiles/spirv-reflect.dir/clean:
 third_party/CMakeFiles/imgui.dir/all:
 	$(MAKE) $(MAKESILENT) -f third_party/CMakeFiles/imgui.dir/build.make third_party/CMakeFiles/imgui.dir/depend
 	$(MAKE) $(MAKESILENT) -f third_party/CMakeFiles/imgui.dir/build.make third_party/CMakeFiles/imgui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=24,25,26,27,28,29,30,31 "Built target imgui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=25,26,27,28,29,30,31,32 "Built target imgui"
 .PHONY : third_party/CMakeFiles/imgui.dir/all
 
 # Build rule for subdir invocation for target.
@@ -215,12 +215,12 @@ src/CMakeFiles/Pyrrhasterized.dir/all: third_party/CMakeFiles/spirv-reflect.dir/
 src/CMakeFiles/Pyrrhasterized.dir/all: third_party/CMakeFiles/imgui.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Pyrrhasterized.dir/build.make src/CMakeFiles/Pyrrhasterized.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Pyrrhasterized.dir/build.make src/CMakeFiles/Pyrrhasterized.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22 "Built target Pyrrhasterized"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 "Built target Pyrrhasterized"
 .PHONY : src/CMakeFiles/Pyrrhasterized.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/Pyrrhasterized.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles 33
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/Pyrrhasterized.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/Pyrrhasterized.dir/rule
@@ -241,7 +241,7 @@ src/CMakeFiles/Pyrrhasterized.dir/clean:
 src/CMakeFiles/copy_resources.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/copy_resources.dir/build.make src/CMakeFiles/copy_resources.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/copy_resources.dir/build.make src/CMakeFiles/copy_resources.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=23 "Built target copy_resources"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=24 "Built target copy_resources"
 .PHONY : src/CMakeFiles/copy_resources.dir/all
 
 # Build rule for subdir invocation for target.

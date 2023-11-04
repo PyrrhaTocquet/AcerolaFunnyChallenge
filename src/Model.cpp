@@ -364,6 +364,22 @@ void Model::loadGltf(const std::filesystem::path& path)
 	}
 
 	materialsFromGltfThread[materialCount] = std::jthread(&Model::generateTangents, this);
+
+	// -------------------------
+	std::vector<glm::vec3> vertices;
+	for(Vertex v : m_meshes[0].loadingVertices)
+	{
+		vertices.push_back(v.pos);
+	}
+
+
+
+	uint32_t maxPrimitives = this->m_meshes[0].loadingIndices.size() / 3;
+	uint32_t maxVertices = this->m_meshes[0].loadingVertices.size();
+
+	if(maxPrimitives != 0 && maxVertices != 0)
+		GeometryTools::bakeMeshlets(maxPrimitives, maxVertices, m_meshes[0].loadingIndices.data(), m_meshes[0].loadingIndices.size(), vertices.data(), m_meshes[0].loadingVertices.size(), m_outMeshlets);
+
 };
 
 //Calls the appropriate loading function depending on the file extension

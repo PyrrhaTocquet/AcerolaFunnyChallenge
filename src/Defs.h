@@ -116,6 +116,16 @@ struct Vertex {
 	}
 };
 
+struct Meshlet{
+	struct Triangle{
+		uint32_t i0;
+		uint32_t i1;
+		uint32_t i2;
+	};
+	std::vector<uint32_t> uniqueVertexIndices;
+	std::vector<Triangle> primitiveIndices;
+};
+
 /* CLEAR COLORS */
 constexpr vk::ClearColorValue CLEAR_COLOR = vk::ClearColorValue(std::array<float, 4>{.8f, .8f, .8f, 1.0f});
 constexpr vk::ClearDepthStencilValue CLEAR_DEPTH = vk::ClearDepthStencilValue({ 1.0f, 0 });

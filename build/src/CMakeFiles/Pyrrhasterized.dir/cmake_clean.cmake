@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Pyrrhasterized.dir/Drawable.cpp.o.d"
   "CMakeFiles/Pyrrhasterized.dir/Entity.cpp.o"
   "CMakeFiles/Pyrrhasterized.dir/Entity.cpp.o.d"
+  "CMakeFiles/Pyrrhasterized.dir/GeometryTools.cpp.o"
+  "CMakeFiles/Pyrrhasterized.dir/GeometryTools.cpp.o.d"
   "CMakeFiles/Pyrrhasterized.dir/Light.cpp.o"
   "CMakeFiles/Pyrrhasterized.dir/Light.cpp.o.d"
   "CMakeFiles/Pyrrhasterized.dir/MainRenderPass.cpp.o"

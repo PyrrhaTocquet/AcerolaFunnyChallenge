@@ -240,6 +240,30 @@ Entity.cpp.s:
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Pyrrhasterized.dir/build.make src/CMakeFiles/Pyrrhasterized.dir/Entity.cpp.s
 .PHONY : Entity.cpp.s
 
+GeometryTools.o: GeometryTools.cpp.o
+.PHONY : GeometryTools.o
+
+# target to build an object file
+GeometryTools.cpp.o:
+	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Pyrrhasterized.dir/build.make src/CMakeFiles/Pyrrhasterized.dir/GeometryTools.cpp.o
+.PHONY : GeometryTools.cpp.o
+
+GeometryTools.i: GeometryTools.cpp.i
+.PHONY : GeometryTools.i
+
+# target to preprocess a source file
+GeometryTools.cpp.i:
+	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Pyrrhasterized.dir/build.make src/CMakeFiles/Pyrrhasterized.dir/GeometryTools.cpp.i
+.PHONY : GeometryTools.cpp.i
+
+GeometryTools.s: GeometryTools.cpp.s
+.PHONY : GeometryTools.s
+
+# target to generate assembly for a file
+GeometryTools.cpp.s:
+	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Pyrrhasterized.dir/build.make src/CMakeFiles/Pyrrhasterized.dir/GeometryTools.cpp.s
+.PHONY : GeometryTools.cpp.s
+
 Light.o: Light.cpp.o
 .PHONY : Light.o
 
@@ -670,6 +694,9 @@ help:
 	@echo "... Entity.o"
 	@echo "... Entity.i"
 	@echo "... Entity.s"
+	@echo "... GeometryTools.o"
+	@echo "... GeometryTools.i"
+	@echo "... GeometryTools.s"
 	@echo "... Light.o"
 	@echo "... Light.i"
 	@echo "... Light.s"
