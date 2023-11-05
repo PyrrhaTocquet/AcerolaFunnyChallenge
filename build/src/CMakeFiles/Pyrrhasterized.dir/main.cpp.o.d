@@ -405,10 +405,21 @@ src/CMakeFiles/Pyrrhasterized.dir/main.cpp.o: \
  /usr/include/glm/ext/matrix_clip_space.inl \
  /usr/include/glm/ext/matrix_transform.hpp \
  /usr/include/glm/ext/matrix_transform.inl \
- /usr/include/glm/gtc/matrix_transform.inl /usr/include/c++/11/optional \
+ /usr/include/glm/gtc/matrix_transform.inl /usr/include/c++/11/filesystem \
+ /usr/include/c++/11/bits/fs_fwd.h /usr/include/c++/11/bits/fs_path.h \
+ /usr/include/c++/11/locale \
+ /usr/include/c++/11/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/11/bits/locale_conv.h /usr/include/c++/11/iomanip \
+ /usr/include/c++/11/bits/quoted_string.h /usr/include/c++/11/codecvt \
+ /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h \
+ /usr/include/c++/11/optional \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/VulkanRenderer.h \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/VulkanTools.h \
- /usr/include/c++/11/fstream /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/c++/11/fstream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc \
@@ -418,16 +429,8 @@ src/CMakeFiles/Pyrrhasterized.dir/main.cpp.o: \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/VulkanScene.h \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Entity.h \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Model.h \
- /usr/include/c++/11/filesystem /usr/include/c++/11/bits/fs_fwd.h \
- /usr/include/c++/11/bits/fs_path.h /usr/include/c++/11/locale \
- /usr/include/c++/11/bits/locale_facets_nonio.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/11/bits/locale_facets_nonio.tcc \
- /usr/include/c++/11/bits/locale_conv.h /usr/include/c++/11/iomanip \
- /usr/include/c++/11/bits/quoted_string.h /usr/include/c++/11/codecvt \
- /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Material.h \
+ /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/SerializationTools.h \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/GeometryTools.h \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Drawable.h \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/DirectionalLight.h \

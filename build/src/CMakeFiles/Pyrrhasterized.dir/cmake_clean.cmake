@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Pyrrhasterized.dir/Peach.cpp.o.d"
   "CMakeFiles/Pyrrhasterized.dir/PointLight.cpp.o"
   "CMakeFiles/Pyrrhasterized.dir/PointLight.cpp.o.d"
+  "CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o"
+  "CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o.d"
   "CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o"
   "CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o.d"
   "CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o"

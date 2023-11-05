@@ -85,7 +85,7 @@ const uint32_t VulkanScene::getIndexBufferSize()
 {
 	uint32_t indicesCount = 0;
 	for (const auto& model : m_models) {
-		for (const auto& texturedMesh : model->getMeshes()) {
+		for (const auto& texturedMesh : model->getRawMeshes()) {
 			indicesCount += texturedMesh.loadingIndices.size();
 		}
 
@@ -150,7 +150,7 @@ void VulkanScene::createIndexBuffer()
 
 	int indexOffset = 0;
 	for (int modelIndex = 0; modelIndex < m_models.size(); modelIndex++) {
-		auto texturedMeshes = m_models[modelIndex]->getMeshes();
+		auto texturedMeshes = m_models[modelIndex]->getRawMeshes();
 		for (int texturedMeshIndex = 0; texturedMeshIndex < texturedMeshes.size(); texturedMeshIndex++) {
 			
 			auto& texturedMesh = texturedMeshes[texturedMeshIndex];
@@ -161,7 +161,7 @@ void VulkanScene::createIndexBuffer()
 			memcpy(data, texturedMesh.loadingIndices.data(), static_cast<size_t>(texturedMesh.loadingIndices.size()*sizeof(uint32_t)));
 			data += texturedMesh.loadingIndices.size() * sizeof(uint32_t);
 		}
-		m_models[modelIndex]->clearLoadingIndexData();
+		//m_models[modelIndex]->clearLoadingIndexData();
 	}
 	m_allocator.unmapMemory(stagingAllocation);
 
@@ -179,7 +179,7 @@ void VulkanScene::createVertexBuffer()
 {
 	size_t verticesCount = 0;
 	for (const auto& model : m_models) {
-		for (const auto& texturedMesh : model->getMeshes()) {
+		for (const auto& texturedMesh : model->getRawMeshes()) {
 			verticesCount += texturedMesh.loadingVertices.size();
 		}
 		
@@ -195,11 +195,11 @@ void VulkanScene::createVertexBuffer()
 	char* data = static_cast<char*>(m_allocator.mapMemory(stagingAllocation));
 
 	for (const auto& model : m_models) {
-		for (const auto& texturedMesh : model->getMeshes()) {
+		for (const auto& texturedMesh : model->getRawMeshes()) {
 			memcpy(data, texturedMesh.loadingVertices.data(), static_cast<size_t>(texturedMesh.loadingVertices.size() * sizeof(Vertex)));
 			data += texturedMesh.loadingVertices.size() * sizeof(Vertex);
 		}
-		model->clearLoadingVertexData();
+		//model->clearLoadingVertexData();
 	}
 	m_allocator.unmapMemory(stagingAllocation);
 

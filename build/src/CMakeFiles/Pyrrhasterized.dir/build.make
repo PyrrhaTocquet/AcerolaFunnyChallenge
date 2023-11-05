@@ -223,10 +223,24 @@ src/CMakeFiles/Pyrrhasterized.dir/PointLight.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pyrrhasterized.dir/PointLight.cpp.s"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/PointLight.cpp -o CMakeFiles/Pyrrhasterized.dir/PointLight.cpp.s
 
+src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
+src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o: ../src/SerializationTools.cpp
+src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o"
+	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/SerializationTools.cpp
+
+src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.i"
+	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/SerializationTools.cpp > CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.i
+
+src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.s"
+	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/SerializationTools.cpp -o CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.s
+
 src/CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
 src/CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o: ../src/ShadowCascadeRenderPass.cpp
 src/CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/ShadowCascadeRenderPass.cpp
 
 src/CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.i: cmake_force
@@ -240,7 +254,7 @@ src/CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.s: cmake_force
 src/CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
 src/CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o: ../src/ShadowRenderPass.cpp
 src/CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/ShadowRenderPass.cpp
 
 src/CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.i: cmake_force
@@ -254,7 +268,7 @@ src/CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.s: cmake_force
 src/CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
 src/CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o: ../src/Spotlight.cpp
 src/CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Spotlight.cpp
 
 src/CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.i: cmake_force
@@ -268,7 +282,7 @@ src/CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.s: cmake_force
 src/CMakeFiles/Pyrrhasterized.dir/VulkanContext.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
 src/CMakeFiles/Pyrrhasterized.dir/VulkanContext.cpp.o: ../src/VulkanContext.cpp
 src/CMakeFiles/Pyrrhasterized.dir/VulkanContext.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanContext.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanContext.cpp.o"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/VulkanContext.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/VulkanContext.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/VulkanContext.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/VulkanContext.cpp
 
 src/CMakeFiles/Pyrrhasterized.dir/VulkanContext.cpp.i: cmake_force
@@ -282,7 +296,7 @@ src/CMakeFiles/Pyrrhasterized.dir/VulkanContext.cpp.s: cmake_force
 src/CMakeFiles/Pyrrhasterized.dir/VulkanImage.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
 src/CMakeFiles/Pyrrhasterized.dir/VulkanImage.cpp.o: ../src/VulkanImage.cpp
 src/CMakeFiles/Pyrrhasterized.dir/VulkanImage.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanImage.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanImage.cpp.o"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/VulkanImage.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/VulkanImage.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/VulkanImage.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/VulkanImage.cpp
 
 src/CMakeFiles/Pyrrhasterized.dir/VulkanImage.cpp.i: cmake_force
@@ -296,7 +310,7 @@ src/CMakeFiles/Pyrrhasterized.dir/VulkanImage.cpp.s: cmake_force
 src/CMakeFiles/Pyrrhasterized.dir/VulkanPipeline.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
 src/CMakeFiles/Pyrrhasterized.dir/VulkanPipeline.cpp.o: ../src/VulkanPipeline.cpp
 src/CMakeFiles/Pyrrhasterized.dir/VulkanPipeline.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanPipeline.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanPipeline.cpp.o"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/VulkanPipeline.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/VulkanPipeline.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/VulkanPipeline.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/VulkanPipeline.cpp
 
 src/CMakeFiles/Pyrrhasterized.dir/VulkanPipeline.cpp.i: cmake_force
@@ -310,7 +324,7 @@ src/CMakeFiles/Pyrrhasterized.dir/VulkanPipeline.cpp.s: cmake_force
 src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderPass.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
 src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderPass.cpp.o: ../src/VulkanRenderPass.cpp
 src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderPass.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderPass.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderPass.cpp.o"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderPass.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/VulkanRenderPass.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/VulkanRenderPass.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/VulkanRenderPass.cpp
 
 src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderPass.cpp.i: cmake_force
@@ -324,7 +338,7 @@ src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderPass.cpp.s: cmake_force
 src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderer.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
 src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderer.cpp.o: ../src/VulkanRenderer.cpp
 src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderer.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderer.cpp.o"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderer.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/VulkanRenderer.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/VulkanRenderer.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/VulkanRenderer.cpp
 
 src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderer.cpp.i: cmake_force
@@ -338,7 +352,7 @@ src/CMakeFiles/Pyrrhasterized.dir/VulkanRenderer.cpp.s: cmake_force
 src/CMakeFiles/Pyrrhasterized.dir/VulkanScene.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
 src/CMakeFiles/Pyrrhasterized.dir/VulkanScene.cpp.o: ../src/VulkanScene.cpp
 src/CMakeFiles/Pyrrhasterized.dir/VulkanScene.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanScene.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanScene.cpp.o"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/VulkanScene.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/VulkanScene.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/VulkanScene.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/VulkanScene.cpp
 
 src/CMakeFiles/Pyrrhasterized.dir/VulkanScene.cpp.i: cmake_force
@@ -352,7 +366,7 @@ src/CMakeFiles/Pyrrhasterized.dir/VulkanScene.cpp.s: cmake_force
 src/CMakeFiles/Pyrrhasterized.dir/VulkanTools.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
 src/CMakeFiles/Pyrrhasterized.dir/VulkanTools.cpp.o: ../src/VulkanTools.cpp
 src/CMakeFiles/Pyrrhasterized.dir/VulkanTools.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanTools.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/VulkanTools.cpp.o"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/VulkanTools.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/VulkanTools.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/VulkanTools.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/VulkanTools.cpp
 
 src/CMakeFiles/Pyrrhasterized.dir/VulkanTools.cpp.i: cmake_force
@@ -366,7 +380,7 @@ src/CMakeFiles/Pyrrhasterized.dir/VulkanTools.cpp.s: cmake_force
 src/CMakeFiles/Pyrrhasterized.dir/main.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/flags.make
 src/CMakeFiles/Pyrrhasterized.dir/main.cpp.o: ../src/main.cpp
 src/CMakeFiles/Pyrrhasterized.dir/main.cpp.o: src/CMakeFiles/Pyrrhasterized.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object src/CMakeFiles/Pyrrhasterized.dir/main.cpp.o"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/Pyrrhasterized.dir/main.cpp.o -MF CMakeFiles/Pyrrhasterized.dir/main.cpp.o.d -o CMakeFiles/Pyrrhasterized.dir/main.cpp.o -c /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/main.cpp
 
 src/CMakeFiles/Pyrrhasterized.dir/main.cpp.i: cmake_force
@@ -390,6 +404,7 @@ Pyrrhasterized_OBJECTS = \
 "CMakeFiles/Pyrrhasterized.dir/Model.cpp.o" \
 "CMakeFiles/Pyrrhasterized.dir/Peach.cpp.o" \
 "CMakeFiles/Pyrrhasterized.dir/PointLight.cpp.o" \
+"CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o" \
 "CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o" \
 "CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o" \
 "CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o" \
@@ -416,6 +431,7 @@ src/Pyrrhasterized: src/CMakeFiles/Pyrrhasterized.dir/Material.cpp.o
 src/Pyrrhasterized: src/CMakeFiles/Pyrrhasterized.dir/Model.cpp.o
 src/Pyrrhasterized: src/CMakeFiles/Pyrrhasterized.dir/Peach.cpp.o
 src/Pyrrhasterized: src/CMakeFiles/Pyrrhasterized.dir/PointLight.cpp.o
+src/Pyrrhasterized: src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o
 src/Pyrrhasterized: src/CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o
 src/Pyrrhasterized: src/CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o
 src/Pyrrhasterized: src/CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o
@@ -433,7 +449,7 @@ src/Pyrrhasterized: /usr/lib/x86_64-linux-gnu/libglfw.so.3.3
 src/Pyrrhasterized: third_party/libimgui.a
 src/Pyrrhasterized: /usr/lib/x86_64-linux-gnu/libvulkan.so
 src/Pyrrhasterized: src/CMakeFiles/Pyrrhasterized.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable Pyrrhasterized"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX executable Pyrrhasterized"
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Pyrrhasterized.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

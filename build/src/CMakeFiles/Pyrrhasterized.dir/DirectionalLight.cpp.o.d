@@ -366,8 +366,6 @@ src/CMakeFiles/Pyrrhasterized.dir/DirectionalLight.cpp.o: \
  /usr/include/glm/ext/matrix_transform.hpp \
  /usr/include/glm/ext/matrix_transform.inl \
  /usr/include/glm/gtc/matrix_transform.inl /usr/include/c++/11/iostream \
- /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Entity.h \
- /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Model.h \
  /usr/include/c++/11/filesystem /usr/include/c++/11/bits/fs_fwd.h \
  /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
  /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
@@ -385,6 +383,8 @@ src/CMakeFiles/Pyrrhasterized.dir/DirectionalLight.cpp.o: \
  /usr/include/c++/11/bits/shared_ptr_base.h \
  /usr/include/c++/11/bits/allocated_ptr.h \
  /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h \
+ /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Entity.h \
+ /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Model.h \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/VulkanImage.h \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/third_party/glfw/include/GLFW/glfw3.h \
  /usr/include/GL/gl.h /usr/include/GL/glext.h \
@@ -403,5 +403,6 @@ src/CMakeFiles/Pyrrhasterized.dir/DirectionalLight.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Material.h \
+ /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/SerializationTools.h \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/GeometryTools.h \
  /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Camera.h

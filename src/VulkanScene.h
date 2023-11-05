@@ -17,6 +17,8 @@
 struct ModelLoadingInfo {
 	std::filesystem::path path;
 	Transform transform;
+	uint32_t vertexOffset = 0;
+	uint32_t primitiveOffset = 0;
 };
 
 class VulkanScene : Drawable

@@ -214,7 +214,7 @@ namespace GeometryTools
 
     }
 
-    void buildAdjacencyList(const uint32_t* indices, uint32_t indexCount, const glm::vec3 *positions, uint32_t vertexCount, uint32_t* outAdjacency){
+    void buildAdjacencyList(const uint32_t* indices, uint32_t indexCount, const std::vector<Vertex>& vertices, uint32_t vertexCount, uint32_t* outAdjacency){
         const uint32_t triCount = indexCount / 3;
 
         //Create a mapping of non-unique vertex indices to unique positions
@@ -226,7 +226,7 @@ namespace GeometryTools
 
         for(uint32_t i = 0; i < vertexCount; i++){
 
-            glm::vec3 position = *(positions + i);
+            glm::vec3 position = vertices[i].pos;
             size_t hash = vecHash(position);
 
             auto it = uniquePositionsMap.find(hash);
@@ -312,9 +312,9 @@ namespace GeometryTools
                 //Cache the face normal
                 glm::vec4 n0;
                 {
-                    glm::vec4 p0 = glm::vec4(positions[i1], 0);
-                    glm::vec4 p1 = glm::vec4(positions[i0], 0);
-                    glm::vec4 p2 = glm::vec4(positions[i2], 0);
+                    glm::vec4 p0 = glm::vec4(vertices[i1].pos, 0);
+                    glm::vec4 p1 = glm::vec4(vertices[i0].pos, 0);
+                    glm::vec4 p2 = glm::vec4(vertices[i2].pos, 0);
 
                     glm::vec4 e0 = p0 - p1;
                     glm::vec4 e1 = p1 - p2;
@@ -329,9 +329,9 @@ namespace GeometryTools
                 {
                     if(bestDot == -2.0f || (current->i1 == i1 && current->i0 == i0))
                     {
-                        glm::vec4 p0 = glm::vec4(positions[current->i0], 0);
-                        glm::vec4 p1 = glm::vec4(positions[current->i1], 0);
-                        glm::vec4 p2 = glm::vec4(positions[current->i2], 0);
+                        glm::vec4 p0 = glm::vec4(vertices[current->i0].pos, 0);
+                        glm::vec4 p1 = glm::vec4(vertices[current->i1].pos, 0);
+                        glm::vec4 p2 = glm::vec4(vertices[current->i2].pos, 0);
 
                         glm::vec4 e0 = p0 - p1;
                         glm::vec4 e1 = p1 - p2;
@@ -425,7 +425,7 @@ namespace GeometryTools
         return meshlet.uniqueVertexIndices.size() == maxVerts || meshlet.primitiveIndices.size() == maxPrims;
     }
 
-    void bakeMeshlets(uint32_t maxPrimitives, uint32_t maxVertices, uint32_t *indices, uint32_t indexCount, glm::vec3 *positions, uint32_t vertexCount, std::vector<Meshlet> &outMeshlets){
+    void bakeMeshlets(uint32_t maxPrimitives, uint32_t maxVertices, uint32_t *indices, uint32_t indexCount, std::vector<Vertex>& vertices, std::vector<Meshlet> &outMeshlets){
         
         const uint32_t triCount = indexCount / 3;
 
@@ -433,7 +433,7 @@ namespace GeometryTools
         std::vector<uint32_t> adjacency;
         adjacency.resize(indexCount);
 
-        buildAdjacencyList(indices, indexCount, positions, vertexCount, adjacency.data());
+        buildAdjacencyList(indices, indexCount, vertices, vertices.size(), adjacency.data());
 
         outMeshlets.clear();
         outMeshlets.emplace_back();
@@ -468,9 +468,9 @@ namespace GeometryTools
                 indices[index * 3 + 2],
             };
 
-            assert(tri[0] < vertexCount);
-            assert(tri[1] < vertexCount);
-            assert(tri[2] < vertexCount);
+            assert(tri[0] < vertices.size());
+            assert(tri[1] < vertices.size());
+            assert(tri[2] < vertices.size());
 
             //Try to add a triangle to meshlet
             if (addToMeshlet(maxPrimitives, maxVertices, *curr, tri))
@@ -479,9 +479,9 @@ namespace GeometryTools
             
 
                 glm::vec3 points[3] = {
-                    positions[tri[0]],
-                    positions[tri[1]],
-                    positions[tri[2]],
+                    vertices[tri[0]].pos,
+                    vertices[tri[1]].pos,
+                    vertices[tri[2]].pos,
                 };
 
                 m_positions.push_back(points[0]);
@@ -535,15 +535,15 @@ namespace GeometryTools
                         indices[candidate * 3 + 2],
                     };
 
-                    assert(triIndices[0] < vertexCount);
-                    assert(triIndices[1] < vertexCount);
-                    assert(triIndices[2] < vertexCount);
+                    assert(triIndices[0] < vertices.size());
+                    assert(triIndices[1] < vertices.size());
+                    assert(triIndices[2] < vertices.size());
 
                     glm::vec3 triVerts[3] = 
                     {
-                        positions[triIndices[0]],
-                        positions[triIndices[1]],
-                        positions[triIndices[2]],
+                        vertices[triIndices[0]].pos,
+                        vertices[triIndices[1]].pos,
+                        vertices[triIndices[2]].pos,
                     };
 
                     candidates[i].second = computeScore(*curr, psphere, glm::vec4(normal, 0.0), triIndices, triVerts);

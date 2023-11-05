@@ -408,6 +408,30 @@ PointLight.cpp.s:
 	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Pyrrhasterized.dir/build.make src/CMakeFiles/Pyrrhasterized.dir/PointLight.cpp.s
 .PHONY : PointLight.cpp.s
 
+SerializationTools.o: SerializationTools.cpp.o
+.PHONY : SerializationTools.o
+
+# target to build an object file
+SerializationTools.cpp.o:
+	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Pyrrhasterized.dir/build.make src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o
+.PHONY : SerializationTools.cpp.o
+
+SerializationTools.i: SerializationTools.cpp.i
+.PHONY : SerializationTools.i
+
+# target to preprocess a source file
+SerializationTools.cpp.i:
+	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Pyrrhasterized.dir/build.make src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.i
+.PHONY : SerializationTools.cpp.i
+
+SerializationTools.s: SerializationTools.cpp.s
+.PHONY : SerializationTools.s
+
+# target to generate assembly for a file
+SerializationTools.cpp.s:
+	cd /home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Pyrrhasterized.dir/build.make src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.s
+.PHONY : SerializationTools.cpp.s
+
 ShadowCascadeRenderPass.o: ShadowCascadeRenderPass.cpp.o
 .PHONY : ShadowCascadeRenderPass.o
 
@@ -715,6 +739,9 @@ help:
 	@echo "... PointLight.o"
 	@echo "... PointLight.i"
 	@echo "... PointLight.s"
+	@echo "... SerializationTools.o"
+	@echo "... SerializationTools.i"
+	@echo "... SerializationTools.s"
 	@echo "... ShadowCascadeRenderPass.o"
 	@echo "... ShadowCascadeRenderPass.i"
 	@echo "... ShadowCascadeRenderPass.s"

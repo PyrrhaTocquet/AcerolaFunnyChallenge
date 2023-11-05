@@ -19,6 +19,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Model.cpp" "src/CMakeFiles/Pyrrhasterized.dir/Model.cpp.o" "gcc" "src/CMakeFiles/Pyrrhasterized.dir/Model.cpp.o.d"
   "/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Peach.cpp" "src/CMakeFiles/Pyrrhasterized.dir/Peach.cpp.o" "gcc" "src/CMakeFiles/Pyrrhasterized.dir/Peach.cpp.o.d"
   "/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/PointLight.cpp" "src/CMakeFiles/Pyrrhasterized.dir/PointLight.cpp.o" "gcc" "src/CMakeFiles/Pyrrhasterized.dir/PointLight.cpp.o.d"
+  "/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/SerializationTools.cpp" "src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o" "gcc" "src/CMakeFiles/Pyrrhasterized.dir/SerializationTools.cpp.o.d"
   "/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/ShadowCascadeRenderPass.cpp" "src/CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o" "gcc" "src/CMakeFiles/Pyrrhasterized.dir/ShadowCascadeRenderPass.cpp.o.d"
   "/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/ShadowRenderPass.cpp" "src/CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o" "gcc" "src/CMakeFiles/Pyrrhasterized.dir/ShadowRenderPass.cpp.o.d"
   "/home/pyrrha/Programming/Vulkan/AcerolaFunnyChallenge/AcerolaFunnyChallenge/src/Spotlight.cpp" "src/CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o" "gcc" "src/CMakeFiles/Pyrrhasterized.dir/Spotlight.cpp.o.d"

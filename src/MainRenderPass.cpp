@@ -332,7 +332,7 @@ std::vector<vk::DescriptorImageInfo> MainRenderPass::generateTextureImageInfo(Vu
     std::vector<vk::DescriptorImageInfo> textureImageInfo;
     uint32_t textureId = 0;
     for (auto& model : scene->m_models) {
-        for (auto& texturedMesh : model->getMeshes()) {
+        for (auto& texturedMesh : model->getRawMeshes()) {
             Material* material = texturedMesh.material;
             if (material == nullptr)
                 continue;
@@ -491,7 +491,7 @@ void MainRenderPass::createMaterialDescriptorSet(VulkanScene* scene)
     materialUBOs.push_back(defaultMaterial);
     //Retrieving Material UBOs
     for (auto& model : scene->m_models) {
-        for (auto& mesh : model->getMeshes()) {
+        for (auto& mesh : model->getRawMeshes()) {
             if (mesh.material != nullptr)
             {
                 mesh.materialId = materialUBOs.size();

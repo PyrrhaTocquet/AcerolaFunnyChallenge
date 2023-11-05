@@ -5,6 +5,7 @@
 #include "glm/glm.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
+#include <filesystem>
 
 /* RENDERING CONSTS*/
 const bool ENABLE_MSAA = false;
@@ -12,6 +13,8 @@ const uint32_t SHADOW_CASCADE_COUNT = 4;
 const uint32_t MAX_LIGHT_COUNT = 10;
 const uint32_t MAX_TEXTURE_COUNT = 4096;
 const uint32_t MAX_MATERIAL_COUNT = 4096;
+
+const std::filesystem::path BAKED_ASSETS_PATH = "baked_assets/";
 
 /* ENUMS */
 enum RenderPassesId {
@@ -124,6 +127,11 @@ struct Meshlet{
 	};
 	std::vector<uint32_t> uniqueVertexIndices;
 	std::vector<Triangle> primitiveIndices;
+};
+
+struct Mesh {
+	std::vector<Meshlet> meshlets;
+	std::vector<Vertex> vertices;
 };
 
 /* CLEAR COLORS */
