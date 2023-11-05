@@ -15,6 +15,8 @@ VulkanScene::~VulkanScene()
 {
 	m_allocator.destroyBuffer(m_indexBuffer, m_indexBufferAllocation);
 	m_allocator.destroyBuffer(m_vertexBuffer, m_vertexBufferAllocation);
+	m_allocator.destroyBuffer(m_primitiveBuffer, m_indexBufferAllocation);
+	m_allocator.destroyBuffer(m_meshletInfoBuffer, m_vertexBufferAllocation);
 
 	for (const auto& model : m_models) {
 		delete model;
@@ -73,11 +75,99 @@ void VulkanScene::addEntity(Entity* entity) {
 	addModel(entity->getModelPtr());
 }
 
+template <typename T>
+void copyStdVectorToGPUBuffer(VulkanContext* context, vma::Allocator* allocator, const std::vector<T>& inputStdVector, vk::Buffer gpuBuffer, vk::DeviceSize size)
+{
+	assert(inputStdVector.size() * sizeof(T) == size);
+
+	vk::Buffer stagingBuffer;
+	vma::Allocation stagingAllocation;
+
+	std::tie(stagingBuffer, stagingAllocation) = context->createBuffer(size, vk::BufferUsageFlagBits::eTransferSrc, vma::MemoryUsage::eCpuToGpu);
+
+	char* data = static_cast<char*>(allocator->mapMemory(stagingAllocation));
+	memcpy(data, inputStdVector.data(), size);
+	allocator->unmapMemory(stagingAllocation);
+	context->copyBuffer(stagingBuffer, gpuBuffer, size);
+	allocator->destroyBuffer(stagingBuffer, stagingAllocation);
+}
+
 //Creates the index and vertex buffer
 void VulkanScene::createGeometryBuffers()
 {
-	createVertexBuffer();
-	createIndexBuffer();
+	/* Buffers Sizes*/
+	uint32_t meshletsCount = 0;
+	uint32_t primitivesCount = 0;
+	uint32_t indicesCount = 0;
+	uint32_t verticesCount = 0;
+
+	for(auto model: m_models)
+	{
+		for(auto mesh: model->getMeshes())
+		{
+			meshletsCount += mesh.meshlets.size();
+			verticesCount += mesh.vertices.size();
+
+			for(auto meshlet: mesh.meshlets)
+			{
+				primitivesCount += meshlet.primitiveIndices.size();
+				indicesCount += meshlet.uniqueVertexIndices.size();
+			}
+		}
+	}
+
+	vk::DeviceSize meshletBufferSize = sizeof(MeshletIndexingInfo) * meshletsCount;
+	vk::DeviceSize primitiveBufferSize = sizeof(Meshlet::Triangle) * primitivesCount;
+	vk::DeviceSize indexBufferSize = sizeof(uint32_t) * indicesCount;
+	vk::DeviceSize vertexBufferSize = sizeof(Vertex) * verticesCount;
+
+	/* Buffers Creation */
+	std::tie(m_meshletInfoBuffer, m_meshletInfoBufferAllocation) = m_context->createBuffer(meshletBufferSize, vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer, vma::MemoryUsage::eGpuOnly);
+	std::tie(m_primitiveBuffer, m_primitiveBufferAllocation) = m_context->createBuffer(primitiveBufferSize, vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer, vma::MemoryUsage::eGpuOnly);
+	std::tie(m_indexBuffer, m_indexBufferAllocation) = m_context->createBuffer(indexBufferSize, vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eIndexBuffer, vma::MemoryUsage::eGpuOnly);
+	std::tie(m_vertexBuffer, m_vertexBufferAllocation) = m_context->createBuffer(vertexBufferSize, vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer, vma::MemoryUsage::eGpuOnly);
+
+	/* Filling the buffer */
+	MeshletIndexingInfo meshletInfo{};
+
+	std::vector<MeshletIndexingInfo> meshletInfos;
+	std::vector<Meshlet::Triangle> triangles;
+	std::vector<uint32_t> indices;
+	std::vector<Vertex> vertices;
+
+	for(auto model: m_models)
+	{
+		for (auto mesh: model->getMeshes())
+		{			
+			for(auto meshlet: mesh.meshlets)
+			{
+				//TODO add offset
+				std::for_each(meshlet.primitiveIndices.begin(), meshlet.primitiveIndices.end(), [&indices](Meshlet::Triangle& tri) {tri.i0 += indices.size(); tri.i1 += indices.size(); tri.i2 += indices.size();});
+				triangles.insert(triangles.end(), meshlet.primitiveIndices.begin(), meshlet.primitiveIndices.end());
+				
+				//TODO add offset
+				std::for_each(meshlet.uniqueVertexIndices.begin(), meshlet.uniqueVertexIndices.end(), [&vertices](uint32_t& i){i += vertices.size();});
+				indices.insert(indices.end(), meshlet.uniqueVertexIndices.begin(), meshlet.uniqueVertexIndices.end());
+				
+
+
+				meshletInfo.primitiveCount = meshlet.primitiveIndices.size();
+				meshletInfo.vertexCount = meshlet.uniqueVertexIndices.size();
+
+				meshletInfos.push_back(meshletInfo);
+				meshletInfo.primitiveOffset = triangles.size();	
+			}
+			vertices.insert(vertices.end(), mesh.vertices.begin(), mesh.vertices.end());
+			meshletInfo.vertexOffset = vertices.size();
+		}
+	} 
+
+	/* Sending to GPU buffers */
+	copyStdVectorToGPUBuffer<MeshletIndexingInfo>(m_context, &m_allocator, meshletInfos, m_meshletInfoBuffer, meshletBufferSize);
+	copyStdVectorToGPUBuffer<Meshlet::Triangle>(m_context, &m_allocator, triangles, m_primitiveBuffer,  primitiveBufferSize);
+	copyStdVectorToGPUBuffer<uint32_t>(m_context, &m_allocator, indices, m_indexBuffer,  indexBufferSize);
+	copyStdVectorToGPUBuffer<Vertex>(m_context, &m_allocator, vertices, m_vertexBuffer,  vertexBufferSize);
+
 }
 
 //Computes the index buffer size from indices count

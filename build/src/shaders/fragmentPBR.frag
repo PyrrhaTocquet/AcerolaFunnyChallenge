@@ -24,6 +24,7 @@ layout( push_constant ) uniform constants
 	mat4 model;
 	int materialId;
 	uint cascadeId;
+	uint meshletId;
 } PushConstants;
 
 layout(set = 0, binding = 0) uniform CameraGeneralUbo {
@@ -95,6 +96,19 @@ const vec3 dielectricF0 = vec3(0.04);
 float specularPower = 30;
 float ambientIntensity = .45;
 float specularAttenuation = 0.8;
+
+vec4 meshletColors[10] = vec4[10](
+	vec4(0.0, 0.0, 0.0, 1.0),
+	vec4(1.0, 0.0, 0.0, 1.0),
+	vec4(0.0, 1.0, 0.0, 1.0),
+	vec4(0.0, 0.0, 1.0, 1.0),
+	vec4(1.0, 1.0, 0.0, 1.0),
+	vec4(0.0, 1.0, 1.0, 1.0),
+	vec4(1.0, 0.0, 1.0, 1.0),
+	vec4(1.0, 1.0, 1.0, 1.0),
+	vec4(0.5, 0.5, 0.0, 1.0),
+	vec4(0.0, 0.5, 0.5, 1.0)
+);
 
 const mat4 biasMat = mat4( 
 	0.5, 0.0, 0.0, 0.0,
@@ -451,6 +465,7 @@ void main(){
 	(shadowFactor-ambientIntensity)/(1-ambientIntensity));
 
 	
+	outColor = meshletColors[PushConstants.meshletId%10];
 
 	/*switch(cascadeIndex[0]) {
 			case 0 : 

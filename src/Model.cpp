@@ -209,13 +209,16 @@ void Model::drawModel(vk::CommandBuffer commandBuffer, vk::PipelineLayout pipeli
 	{
 		pushConstant.model = m_transform.computeMatrix();
 		pushConstant.materialId = static_cast<glm::int32>(m_rawMeshes[i].materialId);
-
-		commandBuffer.pushConstants<ModelPushConstant>(pipelineLayout, vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eFragment, 0, pushConstant);
-
+		
+		int k = 0;
 		for(Meshlet m : m_meshes[i].meshlets)
 		{
-			commandBuffer.drawIndexed(m.primitiveIndices.size() * 3, 1, indexOffset, 0, 0);
-			indexOffset += m.primitiveIndices.size();
+			pushConstant.meshlet = i * k;
+			commandBuffer.pushConstants<ModelPushConstant>(pipelineLayout, vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eFragment, 0, pushConstant);
+
+			commandBuffer.drawIndexed(m.uniqueVertexIndices.size(), 1, indexOffset, 0, 0);
+			indexOffset += m.uniqueVertexIndices.size();
+			k++;
 		}
 
 	}

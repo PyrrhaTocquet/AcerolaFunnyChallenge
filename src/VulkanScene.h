@@ -14,23 +14,16 @@
 #include <thread>
 
 
-struct ModelLoadingInfo {
-	std::filesystem::path path;
-	Transform transform;
-	uint32_t vertexOffset = 0;
-	uint32_t primitiveOffset = 0;
-};
-
 class VulkanScene : Drawable
 {
 public :
-	vk::Buffer m_vertexBuffer, m_indexBuffer = VK_NULL_HANDLE;
+	vk::Buffer m_meshletInfoBuffer, m_primitiveBuffer, m_indexBuffer, m_vertexBuffer = VK_NULL_HANDLE;
 	std::vector<Model*> m_models; //TODO private after drawScene refactoring ??
 	std::vector<Light*> m_lights;
 private:
 	VulkanContext* m_context;
 
-	vma::Allocation m_vertexBufferAllocation, m_indexBufferAllocation;
+	vma::Allocation m_meshletInfoBufferAllocation, m_primitiveBufferAllocation, m_indexBufferAllocation, m_vertexBufferAllocation;
 	vma::Allocator m_allocator;
 	DirectionalLight* m_sun;
 	std::vector<ModelLoadingInfo> m_modelLoadingInfos;
@@ -51,6 +44,8 @@ public:
 private:
 	void createVertexBuffer();
 	void createIndexBuffer();
+	void createMeshletInfoBuffer();
+	void createPrimitivesBuffer();
 
 };
 
