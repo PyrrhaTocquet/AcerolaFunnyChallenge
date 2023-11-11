@@ -74,10 +74,10 @@ int main() {
     sphereMaterialsTransform.scale *= 0.1;
     scene.addModel("assets/SphereMaterials/spherematerials.glb", sphereMaterialsTransform);
     
-    /*
-    Transform transform;
+    
+   /* Transform transform;
     scene.addModel("assets/Splatoon/splatoon.gltf", transform);
-    */
+    
     /*
     Transform transform;
     scene.addModel("assets/CubeScene/cubeScene.gltf", transform);

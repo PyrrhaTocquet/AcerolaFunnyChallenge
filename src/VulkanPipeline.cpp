@@ -41,21 +41,21 @@ void VulkanPipeline::cleanPipeline()
 void VulkanPipeline::recreatePipeline(vk::Extent2D extent)
 {
     vk::Device device = m_context->getDevice();
-    auto vertShaderCode = vkTools::readFile(m_pipelineInfo.vertPath);
-    auto fragShaderCode = vkTools::readFile(m_pipelineInfo.fragPath);
+    auto meshShaderCode = vkTools::readFile(m_pipelineInfo.meshShaderPath);
+    auto fragShaderCode = vkTools::readFile(m_pipelineInfo.fragShaderPath);
 
-    spv_reflect::ShaderModule vertShaderModuleInfo(vertShaderCode.size(), vertShaderCode.data());
+    spv_reflect::ShaderModule meshShaderModuleInfo(meshShaderCode.size(), meshShaderCode.data());
     spv_reflect::ShaderModule fragShaderModuleInfo(fragShaderCode.size(), fragShaderCode.data());
 
-    auto vertShaderModule = createShaderModule(vertShaderCode);
+    auto meshShaderModule = createShaderModule(meshShaderCode);
     auto fragShaderModule = createShaderModule(fragShaderCode);
 
     vk::PipelineShaderStageCreateInfo shaderStages[] = {
         {
             .flags = vk::PipelineShaderStageCreateFlags(),
-            .stage = vk::ShaderStageFlagBits::eVertex,
-            .module = static_cast<VkShaderModule>(vertShaderModule),
-            .pName = vertShaderModuleInfo.GetEntryPointName()
+            .stage = vk::ShaderStageFlagBits::eMeshEXT,
+            .module = static_cast<VkShaderModule>(meshShaderModule),
+            .pName = meshShaderModuleInfo.GetEntryPointName()
         },
         {
             .flags = vk::PipelineShaderStageCreateFlags(),
@@ -69,12 +69,12 @@ void VulkanPipeline::recreatePipeline(vk::Extent2D extent)
     auto bindingDescription = Vertex::getBindingDescription();
     auto attributeDescriptions = Vertex::getAttributeDescriptions();
 
-    vk::PipelineVertexInputStateCreateInfo vertexInputInfo = {
+    /*vk::PipelineVertexInputStateCreateInfo vertexInputInfo = {
         .vertexBindingDescriptionCount = 1,
         .pVertexBindingDescriptions = &bindingDescription,
         .vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size()),
         .pVertexAttributeDescriptions = attributeDescriptions.data()
-    };
+    };*/
 
     vk::PipelineInputAssemblyStateCreateInfo inputAssembly = {
         .topology = vk::PrimitiveTopology::eTriangleList,
@@ -162,7 +162,7 @@ void VulkanPipeline::recreatePipeline(vk::Extent2D extent)
     vk::GraphicsPipelineCreateInfo graphicsPipelineCreateInfo = {
         .stageCount = 2,
         .pStages = shaderStages,
-        .pVertexInputState = &vertexInputInfo,
+        /*.pVertexInputState = &vertexInputInfo,*/
         .pInputAssemblyState = &inputAssembly,
         .pViewportState = &viewportState,
         .pRasterizationState = &rasterizer,
@@ -183,7 +183,7 @@ void VulkanPipeline::recreatePipeline(vk::Extent2D extent)
     }
 
 
-    device.destroyShaderModule(vertShaderModule);
+    device.destroyShaderModule(meshShaderModule);
     device.destroyShaderModule(fragShaderModule);
 
     m_pipeline = pipelineResult.value;

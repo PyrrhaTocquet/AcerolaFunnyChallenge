@@ -234,7 +234,7 @@ void MainRenderPass::createDescriptorSetLayout()
         .binding = 0,
         .descriptorType = vk::DescriptorType::eUniformBuffer,
         .descriptorCount = 1,
-        .stageFlags = vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eFragment,
+        .stageFlags = vk::ShaderStageFlagBits::eMeshEXT | vk::ShaderStageFlagBits::eFragment,
     };
 
     vk::DescriptorSetLayoutBinding lightUboLayoutBinding{
@@ -556,9 +556,9 @@ void MainRenderPass::createDescriptorSets(VulkanScene* scene)
     createMaterialDescriptorSet(scene);
 }
 
-void MainRenderPass::createPipelineLayout()
+void MainRenderPass::createPipelineLayout(vk::DescriptorSetLayout geometryDescriptorSetLayout)
 {
-    std::array<vk::DescriptorSetLayout, 2> layouts = { m_mainDescriptorSetLayout, m_materialDescriptorSetLayout };
+    std::array<vk::DescriptorSetLayout, 3> layouts = { geometryDescriptorSetLayout, m_mainDescriptorSetLayout, m_materialDescriptorSetLayout };
 
     vk::PipelineLayoutCreateInfo pipelineLayoutInfo = {
        .setLayoutCount = layouts.size(),
@@ -578,8 +578,8 @@ void MainRenderPass::createPipelineLayout()
 void MainRenderPass::createDefaultPipeline()
 {
     PipelineInfo pipelineInfo{
-       .vertPath = "shaders/vertexPBR.spv",
-       .fragPath = "shaders/fragmentPBR.spv",
+       .meshShaderPath = "shaders/meshNothing.spv",
+       .fragShaderPath = "shaders/fragmentPBR.spv",
     };
 
     m_mainPipeline = new VulkanPipeline(m_context, pipelineInfo, m_pipelineLayout, m_renderPass, getRenderPassExtent());
@@ -675,7 +675,7 @@ void MainRenderPass::drawRenderPass(vk::CommandBuffer commandBuffer, uint32_t sw
     //Draws each scene
     for (auto& scene : scenes)
     {
-        commandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipelineLayout, 0, { m_mainDescriptorSet[m_currentFrame], m_materialDescriptorSet[m_currentFrame]}, nullptr);
+        commandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipelineLayout, 0, { scene->getGeometryDescriptorSet() , m_mainDescriptorSet[m_currentFrame], m_materialDescriptorSet[m_currentFrame]}, nullptr);
         scene->draw(commandBuffer, m_currentFrame, m_pipelineLayout, pushConstant);
     }
     
@@ -691,7 +691,7 @@ void MainRenderPass::createPipelineRessources() {
 void MainRenderPass::createPushConstantsRanges()
 {
     m_pushConstant = vk::PushConstantRange{
-        .stageFlags = vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eFragment,
+        .stageFlags = vk::ShaderStageFlagBits::eMeshEXT | vk::ShaderStageFlagBits::eFragment,
         .offset = 0,
         .size = 128,
     };

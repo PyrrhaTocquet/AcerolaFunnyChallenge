@@ -18,6 +18,9 @@ Model::Model(VulkanContext* context, const std::filesystem::path& path, const Tr
 	m_context = context;
 
 	loadModel(path);
+
+	//TODO Dynamic loading
+	vkDrawMeshTasks = (PFN_vkCmdDrawMeshTasksEXT)vkGetDeviceProcAddr(m_context->getDevice(), "vkCmdDrawMeshTasksEXT");
 }
 
 Model::~Model() {
@@ -204,22 +207,23 @@ void Model::drawModel(vk::CommandBuffer commandBuffer, vk::PipelineLayout pipeli
 		commandBuffer.drawIndexed(mesh.loadingIndices.size(), 1, indexOffset, 0, 0);
 		indexOffset += mesh.loadingIndices.size();
 	}*/
-
+	uint32_t k = 0;
 	for (int i = 0; i < m_rawMeshes.size(); i++)
 	{
 		pushConstant.model = m_transform.computeMatrix();
 		pushConstant.materialId = static_cast<glm::int32>(m_rawMeshes[i].materialId);
 		
-		int k = 0;
-		for(Meshlet m : m_meshes[i].meshlets)
+		if(m_meshes[i].meshlets.size() > 0)
 		{
-			pushConstant.meshlet = i * k;
-			commandBuffer.pushConstants<ModelPushConstant>(pipelineLayout, vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eFragment, 0, pushConstant);
-
-			commandBuffer.drawIndexed(m.uniqueVertexIndices.size(), 1, indexOffset, 0, 0);
-			indexOffset += m.uniqueVertexIndices.size();
-			k++;
+			pushConstant.meshlet = m_meshes[i].meshlets[0].meshletInfo.meshletId;
+			commandBuffer.pushConstants<ModelPushConstant>(pipelineLayout, vk::ShaderStageFlagBits::eMeshEXT | vk::ShaderStageFlagBits::eFragment, 0, pushConstant);
+			vkDrawMeshTasks(commandBuffer, m_meshes[i].meshlets.size(), 1, 1);
 		}
+
+			
+		k += m_meshes[i].meshlets.size();
+		
+	
 
 	}
 
@@ -412,7 +416,7 @@ void Model::loadModel(const std::filesystem::path& path) {
 		for(RawMesh mesh: m_rawMeshes)
 		{
 			uint32_t maxPrimitives = 128;
-			uint32_t maxVertices = maxPrimitives * 3;
+			uint32_t maxVertices = 128;
 
 			m_meshes.emplace_back();
 			if(mesh.loadingIndices.size() > 0)

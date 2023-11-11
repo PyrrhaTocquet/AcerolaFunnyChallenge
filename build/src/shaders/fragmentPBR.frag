@@ -18,6 +18,7 @@ layout(location = 1) in vec3 fragNormal;
 layout(location = 2) in vec3 fragPosWorld;
 layout(location = 3) in vec3 fragPosView;
 layout(location = 4) in vec4 fragTangent;
+layout(location = 5) flat in uint meshletId;
 
 layout( push_constant ) uniform constants
 {
@@ -27,7 +28,7 @@ layout( push_constant ) uniform constants
 	uint meshletId;
 } PushConstants;
 
-layout(set = 0, binding = 0) uniform CameraGeneralUbo {
+layout(set = 1, binding = 0) uniform CameraGeneralUbo {
 	mat4 view;
 	mat4 proj;
 	mat4[SHADOW_CASCADE_COUNT] cascadeViewProj;
@@ -52,14 +53,14 @@ struct Light{
 	uint shadowCaster;
 };
 
-layout(set = 0, binding = 1) uniform LightsUBO {
+layout(set = 1, binding = 1) uniform LightsUBO {
 	Light lights[MAX_LIGHT_COUNT];
 }lightsUbo;
 
-layout(set = 0, binding = 2) uniform sampler2DArray shadowTexSampler;
+layout(set = 1, binding = 2) uniform sampler2DArray shadowTexSampler;
 
 
-layout(set = 0, binding = 3) uniform sampler2D texSampler[];
+layout(set = 1, binding = 3) uniform sampler2D texSampler[];
 
 struct Material{
 	vec4 baseColor;
@@ -79,7 +80,7 @@ struct Material{
 };
 
 
-layout(set = 1, binding = 0) uniform MaterialUbo {
+layout(set = 2, binding = 0) uniform MaterialUbo {
 	Material material;
 }materialUbo[];
 
@@ -94,7 +95,7 @@ const vec3 black = vec3(0, 0, 0);
 const vec3 dielectricF0 = vec3(0.04);
 
 float specularPower = 30;
-float ambientIntensity = .45;
+float ambientIntensity = .6;
 float specularAttenuation = 0.8;
 
 vec4 meshletColors[10] = vec4[10](
@@ -464,8 +465,10 @@ void main(){
 	vec4(emissiveColor + lightResult.diffuse + lightResult.diffuseShadowCaster + lightResult.specular + lightResult.specularShadowCaster + ambientResult * (shadowFactor), albedo.a),
 	(shadowFactor-ambientIntensity)/(1-ambientIntensity));
 
-	
-	outColor = meshletColors[PushConstants.meshletId%10];
+	//outColor += meshletColors[meshletId%10];
+	//outColor = vec4(0.5, 0.0, 0.0, 1.0);
+
+
 
 	/*switch(cascadeIndex[0]) {
 			case 0 : 

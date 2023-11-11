@@ -51,6 +51,106 @@ void VulkanScene::addModel(Model* model)
 }
 
 
+
+void VulkanScene::createGeometryDescriptorSet(vk::DescriptorSetLayout geometryDescriptorSetLayout)
+{
+	 vk::Device device = m_context->getDevice();
+	//Descriptor Pool
+    {
+		vk::DescriptorPoolSize bindingPoolSize {.type = vk::DescriptorType::eStorageBuffer, .descriptorCount = 1};
+        std::array<vk::DescriptorPoolSize, 4> poolSizes{bindingPoolSize, bindingPoolSize, bindingPoolSize, bindingPoolSize};
+      
+        vk::DescriptorPoolCreateInfo poolInfo{
+            .maxSets = static_cast<uint32_t>(MAX_FRAMES_IN_FLIGHT),
+            .poolSizeCount = static_cast<uint32_t>(poolSizes.size()),
+            .pPoolSizes = poolSizes.data(),
+        };
+        try {
+            m_geometryDescriptorPool = device.createDescriptorPool(poolInfo);
+        }
+        catch (vk::SystemError err)
+        {
+            throw std::runtime_error("could not create descriptor pool");
+        }
+    }
+
+    /*Descriptor Sets Allocation*/
+    vk::DescriptorSetAllocateInfo allocInfo = {
+     .descriptorPool = m_geometryDescriptorPool,
+     .descriptorSetCount = 1,
+     .pSetLayouts = &geometryDescriptorSetLayout,
+    };
+
+    try {
+        m_geometryDescriptorSet = m_context->getDevice().allocateDescriptorSets(allocInfo)[0];
+    }
+    catch (vk::SystemError err) {
+        throw std::runtime_error("could not allocate descriptor sets");
+    }
+
+	//Writing to the set
+    vk::DescriptorBufferInfo meshletBufferInfo{
+        .buffer = m_meshletInfoBuffer,
+        .offset = 0,
+        .range = sizeof(MeshletIndexingInfo) * m_meshletCount
+    };
+
+    vk::DescriptorBufferInfo primitiveBufferInfo{
+        .buffer = m_primitiveBuffer,
+        .offset = 0,
+        .range = sizeof(Meshlet::Triangle) * m_primitiveCount,
+    };
+
+	vk::DescriptorBufferInfo indexBufferInfo{
+		.buffer = m_indexBuffer,
+		.offset = 0,
+		.range = sizeof(uint32_t) * m_indexCount,
+	};
+
+	vk::DescriptorBufferInfo vertexBufferInfo{
+		.buffer = m_vertexBuffer,
+		.offset = 0,
+		.range = sizeof(Vertex) * m_vertexCount,
+	};
+
+	vk::WriteDescriptorSet meshletBufferDescriptorWrite{
+		.dstSet = m_geometryDescriptorSet,
+		.dstBinding = 0,
+		.dstArrayElement = 0,
+		.descriptorCount = 1,
+		.descriptorType = vk::DescriptorType::eStorageBuffer,
+		.pBufferInfo = &meshletBufferInfo,
+	};
+
+	vk::WriteDescriptorSet primitiveBufferWrite = meshletBufferDescriptorWrite;
+	primitiveBufferWrite.dstBinding = 1;
+	primitiveBufferWrite.pBufferInfo = &primitiveBufferInfo;
+
+	vk::WriteDescriptorSet indexBufferWrite = meshletBufferDescriptorWrite;
+	indexBufferWrite.dstBinding = 2;
+	indexBufferWrite.pBufferInfo = &indexBufferInfo;
+
+	vk::WriteDescriptorSet vertexBufferWrite = meshletBufferDescriptorWrite;
+	vertexBufferWrite.dstBinding = 3;
+	vertexBufferWrite.pBufferInfo = &vertexBufferInfo;
+
+	std::array<vk::WriteDescriptorSet, 4> descriptorWrites{meshletBufferDescriptorWrite, primitiveBufferWrite, indexBufferWrite, vertexBufferWrite};
+
+    try {
+        m_context->getDevice().updateDescriptorSets(descriptorWrites, nullptr);
+    }
+    catch (vk::SystemError err)
+    {
+        throw std::runtime_error("could not create descriptor sets");
+    }
+    
+}
+
+vk::DescriptorSet VulkanScene::getGeometryDescriptorSet()
+{
+    return m_geometryDescriptorSet;
+}
+
 //Function used in order to multithread model loading
 static std::mutex modelsMutex;
 static void newModel(VulkanContext* context, std::filesystem::path path, Transform transform, std::vector<Model*>* models) {
@@ -59,7 +159,7 @@ static void newModel(VulkanContext* context, std::filesystem::path path, Transfo
 	models->push_back(model);
 };
 
-//Loads the models in the model info list (multithreaded)
+// Loads the models in the model info list (multithreaded)
 void VulkanScene::loadModels()
 {
 	std::vector<std::jthread> modelLoadingThreads;
@@ -96,36 +196,31 @@ void copyStdVectorToGPUBuffer(VulkanContext* context, vma::Allocator* allocator,
 void VulkanScene::createGeometryBuffers()
 {
 	/* Buffers Sizes*/
-	uint32_t meshletsCount = 0;
-	uint32_t primitivesCount = 0;
-	uint32_t indicesCount = 0;
-	uint32_t verticesCount = 0;
-
 	for(auto model: m_models)
 	{
 		for(auto mesh: model->getMeshes())
 		{
-			meshletsCount += mesh.meshlets.size();
-			verticesCount += mesh.vertices.size();
+			m_meshletCount += mesh.meshlets.size();
+			m_vertexCount += mesh.vertices.size();
 
 			for(auto meshlet: mesh.meshlets)
 			{
-				primitivesCount += meshlet.primitiveIndices.size();
-				indicesCount += meshlet.uniqueVertexIndices.size();
+				m_primitiveCount += meshlet.primitiveIndices.size();
+				m_indexCount += meshlet.uniqueVertexIndices.size();
 			}
 		}
 	}
 
-	vk::DeviceSize meshletBufferSize = sizeof(MeshletIndexingInfo) * meshletsCount;
-	vk::DeviceSize primitiveBufferSize = sizeof(Meshlet::Triangle) * primitivesCount;
-	vk::DeviceSize indexBufferSize = sizeof(uint32_t) * indicesCount;
-	vk::DeviceSize vertexBufferSize = sizeof(Vertex) * verticesCount;
+	vk::DeviceSize meshletBufferSize = sizeof(MeshletIndexingInfo) * m_meshletCount;
+	vk::DeviceSize primitiveBufferSize = sizeof(Meshlet::Triangle) * m_primitiveCount;
+	vk::DeviceSize indexBufferSize = sizeof(uint32_t) * m_indexCount;
+	vk::DeviceSize vertexBufferSize = sizeof(Vertex) * m_vertexCount;
 
 	/* Buffers Creation */
 	std::tie(m_meshletInfoBuffer, m_meshletInfoBufferAllocation) = m_context->createBuffer(meshletBufferSize, vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer, vma::MemoryUsage::eGpuOnly);
 	std::tie(m_primitiveBuffer, m_primitiveBufferAllocation) = m_context->createBuffer(primitiveBufferSize, vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer, vma::MemoryUsage::eGpuOnly);
-	std::tie(m_indexBuffer, m_indexBufferAllocation) = m_context->createBuffer(indexBufferSize, vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eIndexBuffer, vma::MemoryUsage::eGpuOnly);
-	std::tie(m_vertexBuffer, m_vertexBufferAllocation) = m_context->createBuffer(vertexBufferSize, vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer, vma::MemoryUsage::eGpuOnly);
+	std::tie(m_indexBuffer, m_indexBufferAllocation) = m_context->createBuffer(indexBufferSize, vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer, vma::MemoryUsage::eGpuOnly);
+	std::tie(m_vertexBuffer, m_vertexBufferAllocation) = m_context->createBuffer(vertexBufferSize, vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer, vma::MemoryUsage::eGpuOnly);
 
 	/* Filling the buffer */
 	MeshletIndexingInfo meshletInfo{};
@@ -135,30 +230,40 @@ void VulkanScene::createGeometryBuffers()
 	std::vector<uint32_t> indices;
 	std::vector<Vertex> vertices;
 
-	for(auto model: m_models)
+	uint i = 0;
+	for(auto& model: m_models)
 	{
-		for (auto mesh: model->getMeshes())
+		for (auto& mesh: model->getMeshes())
 		{			
-			for(auto meshlet: mesh.meshlets)
+
+			for(auto& meshlet: mesh.meshlets)
 			{
-				//TODO add offset
-				std::for_each(meshlet.primitiveIndices.begin(), meshlet.primitiveIndices.end(), [&indices](Meshlet::Triangle& tri) {tri.i0 += indices.size(); tri.i1 += indices.size(); tri.i2 += indices.size();});
+				
+				meshletInfo.primitiveOffset = triangles.size();	
+				
 				triangles.insert(triangles.end(), meshlet.primitiveIndices.begin(), meshlet.primitiveIndices.end());
 				
-				//TODO add offset
-				std::for_each(meshlet.uniqueVertexIndices.begin(), meshlet.uniqueVertexIndices.end(), [&vertices](uint32_t& i){i += vertices.size();});
+				std::for_each(meshlet.uniqueVertexIndices.begin(), meshlet.uniqueVertexIndices.end(), [indices](uint32_t& index){index+=indices.size();});
 				indices.insert(indices.end(), meshlet.uniqueVertexIndices.begin(), meshlet.uniqueVertexIndices.end());
 				
 
 
 				meshletInfo.primitiveCount = meshlet.primitiveIndices.size();
 				meshletInfo.vertexCount = meshlet.uniqueVertexIndices.size();
-
+				
+				
+				meshletInfo.meshletId = i;
+				meshlet.meshletInfo = meshletInfo;
+				
 				meshletInfos.push_back(meshletInfo);
-				meshletInfo.primitiveOffset = triangles.size();	
+				meshletInfo.vertexOffset += meshlet.uniqueVertexIndices.size();
+				
+
+				i++;
 			}
+			
 			vertices.insert(vertices.end(), mesh.vertices.begin(), mesh.vertices.end());
-			meshletInfo.vertexOffset = vertices.size();
+			
 		}
 	} 
 
@@ -214,8 +319,6 @@ DirectionalLight* VulkanScene::getSun()
 void VulkanScene::draw(vk::CommandBuffer commandBuffer, uint32_t currentFrame, vk::PipelineLayout pipelineLayout, ModelPushConstant& pushConstant)
 {
 	VkDeviceSize offset = 0;
-	commandBuffer.bindVertexBuffers(0, 1, &m_vertexBuffer, &offset);
-	commandBuffer.bindIndexBuffer(m_indexBuffer, 0, vk::IndexType::eUint32);
 
 	uint32_t indexOffset = 0;
 	//Draws each model in a scene

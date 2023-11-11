@@ -44,7 +44,7 @@ struct ModelPushConstant {
 	glm::int32 materialId;
 	glm::uint32 cascadeId;
 	uint32_t meshlet;
-	float padding[5];
+	//float padding[5];
 };
 
 struct Time {
@@ -57,7 +57,7 @@ struct MeshletIndexingInfo{
 	uint32_t vertexOffset = 0;
 	uint32_t primitiveCount = 0;
 	uint32_t primitiveOffset = 0;
-	uint32_t indexOffset = 0;
+	uint32_t meshletId = 0;
 };
 
 
@@ -88,8 +88,11 @@ struct Transform {
 
 struct Vertex {
 	glm::vec3 pos;
+	float padding;
 	glm::vec2 texCoord;
+	float padding2[2];
 	glm::vec3 normal;
+	float padding3;
 	glm::vec4 tangent; //w: handles handedness
 
 

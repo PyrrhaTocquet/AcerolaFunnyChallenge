@@ -29,7 +29,7 @@ private:
 	std::vector<Mesh> m_meshes;
 	Transform m_transform;
 
-	
+	PFN_vkCmdDrawMeshTasksEXT vkDrawMeshTasks;
 
 
 	void loadModel(const std::filesystem::path& path);

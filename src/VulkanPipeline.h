@@ -6,8 +6,8 @@
 
 
 struct PipelineInfo {
-	const char* vertPath;
-	const char* fragPath;
+	const char* meshShaderPath;
+	const char* fragShaderPath;
 	vk::PolygonMode polygonMode = vk::PolygonMode::eFill;
 	vk::CullModeFlags cullmode = vk::CullModeFlagBits::eBack;
 	vk::FrontFace frontFace = vk::FrontFace::eCounterClockwise;

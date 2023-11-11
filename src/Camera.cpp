@@ -44,7 +44,7 @@ void Camera::update()
     lastMousePosX = posX;
     lastMousePosY = posY;
 
-    float sensitivity = 0.2f;
+    float sensitivity = 0.4f;
     deltaX *= sensitivity;
     deltaY *= sensitivity;
 
