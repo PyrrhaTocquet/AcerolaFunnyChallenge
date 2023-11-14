@@ -59,11 +59,15 @@ int main() {
     /* Chest */
     Transform chestTransform;
     chestTransform.translate = glm::vec3(0.f, 0.f, 2.f);
+
+    /* Bunny Transform */
+    Transform bunnyTransform;
     
     //scene.addModel("assets/TreasureChest/model.gltf", chestTransform);
     scene.addModel("assets/SponzaGltf/sponza.glb", sponzaTransform);
     scene.addModel("assets/Ganon/ganon.gltf", ganonTransform);
     scene.addModel("assets/Helmet/DamagedHelmet.gltf", helmetTransform);
+    scene.addModel("assets/bunny.gtf", bunnyTransform);
     Peach* peachEntity = new Peach(&context);
     scene.addEntity(peachEntity);
     renderer.registerEntity(peachEntity);

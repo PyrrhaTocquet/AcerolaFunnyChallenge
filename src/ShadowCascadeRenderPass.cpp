@@ -178,6 +178,7 @@ void ShadowCascadeRenderPass::createDefaultPipeline()
 {
 
     PipelineInfo pipelineInfo{
+        .taskShaderPath = "shaders/taskShadow.spv",
         .meshShaderPath = "shaders/meshCSM.spv",
         .fragShaderPath = "shaders/fragmentCSM.spv",
         .cullmode = vk::CullModeFlagBits::eNone,
@@ -198,7 +199,7 @@ void ShadowCascadeRenderPass::createPipelineRessources()
 void ShadowCascadeRenderPass::createPushConstantsRanges()
 {
     m_pushConstant = vk::PushConstantRange{
-        .stageFlags = vk::ShaderStageFlagBits::eMeshEXT| vk::ShaderStageFlagBits::eFragment,
+        .stageFlags = vk::ShaderStageFlagBits::eMeshEXT | vk::ShaderStageFlagBits::eTaskEXT| vk::ShaderStageFlagBits::eFragment,
         .offset = 0,
         .size = 128,
     };

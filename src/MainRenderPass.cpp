@@ -578,7 +578,8 @@ void MainRenderPass::createPipelineLayout(vk::DescriptorSetLayout geometryDescri
 void MainRenderPass::createDefaultPipeline()
 {
     PipelineInfo pipelineInfo{
-       .meshShaderPath = "shaders/meshNothing.spv",
+        .taskShaderPath = "shaders/taskShell.spv",
+       .meshShaderPath = "shaders/meshPBR.spv",
        .fragShaderPath = "shaders/fragmentPBR.spv",
     };
 
@@ -691,7 +692,7 @@ void MainRenderPass::createPipelineRessources() {
 void MainRenderPass::createPushConstantsRanges()
 {
     m_pushConstant = vk::PushConstantRange{
-        .stageFlags = vk::ShaderStageFlagBits::eMeshEXT | vk::ShaderStageFlagBits::eFragment,
+        .stageFlags = vk::ShaderStageFlagBits::eTaskEXT | vk::ShaderStageFlagBits::eMeshEXT | vk::ShaderStageFlagBits::eFragment,
         .offset = 0,
         .size = 128,
     };

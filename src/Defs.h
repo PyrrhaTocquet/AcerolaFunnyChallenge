@@ -44,6 +44,8 @@ struct ModelPushConstant {
 	glm::int32 materialId;
 	glm::uint32 cascadeId;
 	uint32_t meshlet;
+	uint32_t meshletCount;
+	uint32_t shellCount = 8;
 	//float padding[5];
 };
 

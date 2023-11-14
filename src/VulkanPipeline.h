@@ -3,9 +3,10 @@
 #include "VulkanContext.h"
 #include "spirv_reflect.h"
 #include "VulkanTools.h"
-
+#include <optional>
 
 struct PipelineInfo {
+	std::optional<const char*> taskShaderPath = std::nullopt;
 	const char* meshShaderPath;
 	const char* fragShaderPath;
 	vk::PolygonMode polygonMode = vk::PolygonMode::eFill;

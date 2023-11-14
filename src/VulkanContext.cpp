@@ -710,7 +710,7 @@ void VulkanContext::createLogicalDevice()
 
 	//TODO Better Device Features management
 
-	vk::PhysicalDeviceMeshShaderFeaturesEXT meshShaderFeature{.meshShader = VK_TRUE};
+	vk::PhysicalDeviceMeshShaderFeaturesEXT meshShaderFeature{.taskShader = VK_TRUE, .meshShader = VK_TRUE, };
 
 	vk::PhysicalDeviceFeatures deviceFeatures{
 		.sampleRateShading = VK_TRUE,
