@@ -218,7 +218,7 @@ void Model::drawModel(vk::CommandBuffer commandBuffer, vk::PipelineLayout pipeli
 			pushConstant.meshlet = m_meshes[i].meshlets[0].meshletInfo.meshletId;
 			pushConstant.meshletCount = m_meshes[i].meshlets.size();
 			commandBuffer.pushConstants<ModelPushConstant>(pipelineLayout, vk::ShaderStageFlagBits::eTaskEXT | vk::ShaderStageFlagBits::eMeshEXT | vk::ShaderStageFlagBits::eFragment, 0, pushConstant);
-			if(this->m_meshes.size() < 16 && i == 3){vkDrawMeshTasks(commandBuffer, 128, 1, 1);} else{ vkDrawMeshTasks(commandBuffer, 1, 1, 1);}
+			if(this->m_meshes.size() < 16 && i == 3){vkDrawMeshTasks(commandBuffer, m_meshes[i].meshlets.size(), 1, pushConstant.shellCount);} else{ vkDrawMeshTasks(commandBuffer, m_meshes[i].meshlets.size(), 1, 1);}
 		}
 
 			

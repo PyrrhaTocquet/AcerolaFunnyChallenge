@@ -338,7 +338,7 @@ void VulkanRenderer::createGeometryDescriptorSetLayout()
         .binding = 0,
         .descriptorType = vk::DescriptorType::eStorageBuffer,
         .descriptorCount = 1,
-        .stageFlags = vk::ShaderStageFlagBits::eMeshEXT,
+        .stageFlags = vk::ShaderStageFlagBits::eTaskEXT | vk::ShaderStageFlagBits::eMeshEXT,
     };
 
 	vk::DescriptorSetLayoutBinding primitivesBinding = meshletInfoBinding;

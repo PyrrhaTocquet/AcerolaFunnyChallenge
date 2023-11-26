@@ -98,6 +98,7 @@ namespace SerializationTools{
             MESH 0 MESHLETS COUNT
                 MESHLET 0 TRIANGLE COUNT
                 MESHLET 0 INDEX COUNT
+                MESHLET 0 BOUNDING SPHERE
             MESH 1 VERTICES COUNT
             ....
         */

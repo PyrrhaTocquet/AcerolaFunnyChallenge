@@ -209,7 +209,7 @@ namespace GeometryTools
         prim.i2 = indices[2];
 
         meshlet.primitiveIndices.push_back(prim);
-        
+
         return true;
 
     }
@@ -553,6 +553,7 @@ namespace GeometryTools
                 // Determine wether we need to move to the next meshlet
                 if (isMeshletFull(maxVertices, maxPrimitives, *curr))
                 {
+                    outMeshlets.back().meshletInfo.boundingSphere = minimumBoundingSphere(m_positions.data(), m_positions.size());
                     m_positions.clear();
                     normals.clear();
                     candidateCheck.clear();
@@ -578,6 +579,7 @@ namespace GeometryTools
             {
                 if(candidates.empty())
                 {
+                    outMeshlets.back().meshletInfo.boundingSphere = minimumBoundingSphere(m_positions.data(), m_positions.size());
                     m_positions.clear();
                     normals.clear();
                     candidateCheck.clear();

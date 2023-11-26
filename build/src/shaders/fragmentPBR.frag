@@ -38,6 +38,9 @@ layout(set = 1, binding = 0) uniform CameraGeneralUbo {
 	vec3 cameraPosition;
 	float shadowMapsBlendWidth;
 	float time;
+	float hairLength;
+	float gravityFactor;
+	float hairDensity;
 }generalUbo;
 
 
@@ -365,7 +368,7 @@ float filterPCF(vec4[2] lightViewCoords, uint[2] index)
 
 	float shadowFactor = 0.0;
 	int count = 0;
-	int range = 3; //Averaging 16 samples
+	int range = 1; //Averaging 16 samples
 
 	for (int x = -range; x <= range; x++)
 	{
@@ -408,20 +411,27 @@ void main(){
 
 	/*ALPHA MODE*/
 	//TODOTRANSPARENT
-	vec2 newUV = fragTexCoord.xy * 1000;
-	vec2 localUV = fract(newUV) * 2 - 1;
-	float localDistanceFromCenter = length(localUV);
-
-	uvec2 hashUV = uvec2(newUV);
-	float disolveRandom = hash(hashUV.x + 100 * hashUV.y + 100 * 10) / 1.0;
-	if(disolveRandom > (1 - shellId / float(shellCount)))
+	if(shellCount > 1)
 	{
-		discard;
-	}
+		vec2 newUV = fragTexCoord.xy * generalUbo.hairDensity;
+		vec2 localUV = fract(newUV) * 2 - 1;
+		float localDistanceFromCenter = length(localUV);
 
-	if(localDistanceFromCenter > ( 1 - shellId/float(shellCount)) && shellId  != 0){
-		discard;
-	}
+		uvec2 hashUV = uvec2(newUV);
+		float disolveRandom = hash(hashUV.x + 100 * hashUV.y + 100 * 10) / 1.0;
+		if(disolveRandom > (1 - shellId / float(shellCount)))
+		{
+			discard;
+		}
+
+		if(localDistanceFromCenter > ( 1 - shellId/float(shellCount)) && shellId  != 0){
+			discard;
+		}
+
+		float halfLambert = 0.8 + 0.5*dot(vec3(-lightsUbo.lights[0].directionWorld), fragNormal);
+		//outColor = vec4(albedo.rgb * mix(.7, 1.0, (shellId + 1)/float(shellCount)), 1.0);
+		outColor = vec4(albedo.rgb * halfLambert, 1.0);
+	}else{
 
 	if(material.alphaMode == ALPHA_MODE_MASK)
 	{
@@ -486,14 +496,15 @@ void main(){
 	vec3 ambientResult = ambientColor * albedo.rgb * ambientIntensity;
 	
 
-	outColor = mix(vec4(shadowFactor * (emissiveColor + lightResult.diffuse + lightResult.specular + ambientResult), albedo.a),
-	vec4(emissiveColor + lightResult.diffuse + lightResult.diffuseShadowCaster + lightResult.specular + lightResult.specularShadowCaster + ambientResult * (shadowFactor), albedo.a),
+	vec3 lightResultSum = lightResult.diffuse + lightResult.specular + ambientResult + emissiveColor;
+	outColor = mix(vec4(shadowFactor * lightResultSum, albedo.a),
+	vec4(lightResultSum + lightResult.diffuseShadowCaster + lightResult.specularShadowCaster * (shadowFactor), albedo.a),
 	(shadowFactor-ambientIntensity)/(1-ambientIntensity));
 
 	//outColor = meshletColors[meshletId%10];
 
 	//outColor = vec4(albedo.rgb * mix(.7, 1.0, (shellId + 1)/float(shellCount)), 1.0);
-
+	//outColor =  vec4(fragPosView.xy, -fragPosView.z, 1.0);
 
 	/*switch(cascadeIndex[0]) {
 			case 0 : 
@@ -509,4 +520,7 @@ void main(){
 				outColor *= vec4(1.0f, 1.0f, 0.25f, 1.f);
 				break;
 	}*/
+	}
+	
+
 }

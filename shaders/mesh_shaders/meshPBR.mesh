@@ -10,6 +10,7 @@ struct Vertex {
 };
 
 struct MeshletInfo {
+  vec4 boundingSphere;
   uint vertexCount;
   uint vertexOffset;
   uint primitiveCount;
@@ -70,6 +71,9 @@ mat4 view;
 	vec3 cameraPosition;
 	float shadowMapsBlendWidth;
 	float time;
+  float hairLength;
+  float gravityFactor;
+  float hairDensity;
 }ubo;
 
 
@@ -77,14 +81,15 @@ struct TaskData
 {
     uint shellId;
     uint shellCount;
+    uint meshletOffset;
 };
 taskPayloadSharedEXT TaskData taskData;
 
 void main()
 {
 
-  MeshletInfo currentMeshlet = meshletInfosBuffer.meshletInfos[PushConstants.meshletId + gl_WorkGroupID.x];
-  meshletId[gl_LocalInvocationID.x] = PushConstants.meshletId + gl_WorkGroupID.x;
+  MeshletInfo currentMeshlet = meshletInfosBuffer.meshletInfos[PushConstants.meshletId + taskData.meshletOffset];
+  meshletId[gl_LocalInvocationID.x] = PushConstants.meshletId + taskData.meshletOffset;
   SetMeshOutputsEXT(currentMeshlet.vertexCount, currentMeshlet.primitiveCount);
 
   if(gl_LocalInvocationID.x < currentMeshlet.vertexCount)
@@ -95,8 +100,10 @@ void main()
 
     uint shellId = taskData.shellId;
 
-    vec4 positionWorld =  PushConstants.model * vec4(0.0002*(taskData.shellCount - shellId - 1) * normalize(vertex.normal) + vertex.pos, 1.0);
-    positionWorld -= 0.0003*vec4(0.0, 1.0, 0.0, 0.0) * max(0, 0.5 + dot(vec3(0.0, 1.0, 0.0), mat3(PushConstants.model) * normalize(vertex.normal))) * (taskData.shellCount - shellId - 1)* (taskData.shellCount - shellId - 1)/taskData.shellCount;
+    
+    vec4 positionWorld =  PushConstants.model * vec4(ubo.hairLength*(taskData.shellCount - shellId - 1) /taskData.shellCount * normalize(vertex.normal) + vertex.pos, 1.0);
+    positionWorld -= ubo.gravityFactor*vec4(0.0, 1.0, 0.0, 0.0) * max(0, 0.5 + dot(vec3(0.0, 1.0, 0.0), mat3(PushConstants.model) * normalize(vertex.normal))) * (taskData.shellCount - shellId - 1)* (taskData.shellCount - shellId - 1)/(taskData.shellCount* taskData.shellCount);
+
 
     fragTexCoord[gl_LocalInvocationID.x] = vertex.texCoord;
     fragNormal[gl_LocalInvocationID.x] =  mat3(PushConstants.model) * normalize(vertex.normal);
@@ -105,6 +112,7 @@ void main()
     fragTangent[gl_LocalInvocationID.x] = vec4(normalize(mat3(PushConstants.model) * vertex.tangent.xyz), vertex.tangent.w);  
     fragShellId[gl_LocalInvocationID.x] = taskData.shellCount - shellId - 1;
     fragShellCount[gl_LocalInvocationID.x] = taskData.shellCount;
+    //gl_MeshVerticesEXT[gl_LocalInvocationID.x].gl_Position = ubo.proj * ubo.view * positionWorld + 3*cos(0.3*ubo.time) *vec4(1.0, 0.0, 0.0, 0.0);
     gl_MeshVerticesEXT[gl_LocalInvocationID.x].gl_Position = ubo.proj * ubo.view * positionWorld;
 
 

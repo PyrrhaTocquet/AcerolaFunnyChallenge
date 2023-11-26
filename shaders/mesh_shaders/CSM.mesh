@@ -10,6 +10,7 @@ struct Vertex {
 };
 
 struct MeshletInfo {
+  vec4 boundingSphere;
   uint vertexCount;
   uint vertexOffset;
   uint primitiveCount;
@@ -61,10 +62,17 @@ layout(set = 1, binding = 0) uniform CascadeUniformObject {
 }ubo;
 
 
+struct TaskData
+{
+    uint meshletOffset;
+};
+taskPayloadSharedEXT TaskData taskData;
+
+
 void main()
 {
 
-  MeshletInfo currentMeshlet = meshletInfosBuffer.meshletInfos[PushConstants.meshletId + gl_WorkGroupID.x];
+  MeshletInfo currentMeshlet = meshletInfosBuffer.meshletInfos[PushConstants.meshletId + taskData.meshletOffset];
   SetMeshOutputsEXT(currentMeshlet.vertexCount, currentMeshlet.primitiveCount);
 
   if(gl_LocalInvocationID.x < currentMeshlet.vertexCount)

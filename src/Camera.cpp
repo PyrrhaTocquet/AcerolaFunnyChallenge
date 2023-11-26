@@ -19,7 +19,7 @@ void Camera::update()
     GLFWwindow* window = m_context->getWindowPtr();
    
     //Camrea Movement
-    float cameraMovement = c_cameraSpeed * m_context->getTime().deltaTime;
+    float cameraMovement = (cameraSpeed + glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) * fastCameraSpeed) * m_context->getTime().deltaTime;
     int zKey = glfwGetKey(window, GLFW_KEY_W);
     int sKey = glfwGetKey(window, GLFW_KEY_S);
     if (zKey == GLFW_PRESS && zPressed == false) {

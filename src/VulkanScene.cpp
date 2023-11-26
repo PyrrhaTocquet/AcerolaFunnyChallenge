@@ -238,7 +238,7 @@ void VulkanScene::createGeometryBuffers()
 
 			for(auto& meshlet: mesh.meshlets)
 			{
-				
+				meshletInfo.boundingSphere = meshlet.meshletInfo.boundingSphere;
 				meshletInfo.primitiveOffset = triangles.size();	
 				
 				triangles.insert(triangles.end(), meshlet.primitiveIndices.begin(), meshlet.primitiveIndices.end());
@@ -253,6 +253,7 @@ void VulkanScene::createGeometryBuffers()
 				
 				
 				meshletInfo.meshletId = i;
+
 				meshlet.meshletInfo = meshletInfo;
 				
 				meshletInfos.push_back(meshletInfo);

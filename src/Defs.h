@@ -37,6 +37,9 @@ struct GeneralUniformBufferObject {
 	glm::vec3 cameraPos;
 	float shadowMapsBlendWidth;
 	float time;
+	float hairLength;
+	float gravityFactor;
+	float hairDensity;
 };
 
 struct ModelPushConstant {
@@ -55,11 +58,13 @@ struct Time {
 };
 
 struct MeshletIndexingInfo{
+	glm::vec4 boundingSphere = glm::vec4();
 	uint32_t vertexCount = 0;
 	uint32_t vertexOffset = 0;
 	uint32_t primitiveCount = 0;
 	uint32_t primitiveOffset = 0;
 	uint32_t meshletId = 0;
+	uint64_t padding = 0;
 };
 
 

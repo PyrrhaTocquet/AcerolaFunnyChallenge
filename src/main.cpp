@@ -79,8 +79,8 @@ int main() {
     scene.addModel("assets/SphereMaterials/spherematerials.glb", sphereMaterialsTransform);
     
     
-   /* Transform transform;
-    scene.addModel("assets/Splatoon/splatoon.gltf", transform);
+    /*Transform transform;
+    scene.addModel("assets/Splatoon/splatoon.gltf", transform);*/
     
     /*
     Transform transform;
