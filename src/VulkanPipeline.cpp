@@ -75,7 +75,7 @@ void VulkanPipeline::recreatePipeline(vk::Extent2D extent)
             .flags = vk::PipelineShaderStageCreateFlags(),
             .stage = vk::ShaderStageFlagBits::eTaskEXT,
             .module = static_cast<VkShaderModule>(taskShaderModule),
-            .pName = taskShaderModuleInfo.GetEntryPointName()
+            .pName = "main"
         };
         shaderStages.insert(shaderStages.begin(), taskStageCreateInfo);
     }
@@ -175,7 +175,7 @@ void VulkanPipeline::recreatePipeline(vk::Extent2D extent)
 
 
     vk::GraphicsPipelineCreateInfo graphicsPipelineCreateInfo = {
-        .stageCount = shaderStages.size(),
+        .stageCount = static_cast<uint32_t>(shaderStages.size()),
         .pStages = shaderStages.data(),
         /*.pVertexInputState = &vertexInputInfo,*/
         .pInputAssemblyState = &inputAssembly,

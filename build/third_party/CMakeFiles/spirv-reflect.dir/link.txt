@@ -1,2 +1,0 @@
-/usr/bin/ar qc libspirv-reflect.a CMakeFiles/spirv-reflect.dir/spirv-reflect/spirv_reflect.c.o CMakeFiles/spirv-reflect.dir/spirv-reflect/spirv_reflect.cpp.o
-/usr/bin/ranlib libspirv-reflect.a

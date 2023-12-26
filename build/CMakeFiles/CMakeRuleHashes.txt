@@ -1,3 +1,0 @@
-# Hashes of file build rules.
-592d959e8a43ef9fb955fac018df2355 shaders/CMakeFiles/shaders-build
-859203413c02d4de9882c4d3bb57cfe7 src/CMakeFiles/copy_resources

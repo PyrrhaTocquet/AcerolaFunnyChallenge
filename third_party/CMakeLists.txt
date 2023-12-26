@@ -5,7 +5,7 @@ target_include_directories(vulkanHeaders INTERFACE Vulkan-Headers/include)
 
 if(WIN32)
 add_library(glm INTERFACE)
-target_include_directories(glm INTERFACE glm/glm)
+target_include_directories(glm INTERFACE glm)
 endif()
 
 add_library(vma INTERFACE)

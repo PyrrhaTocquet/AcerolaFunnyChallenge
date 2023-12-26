@@ -621,17 +621,20 @@ void MainRenderPass::renderImGui(vk::CommandBuffer commandBuffer)
     int currentChoice = 0;
     std::array<std::string, 11> shellCountList = {"1", "2", "4", "8", "16", "32", "64", "128", "256", "512", "1024"};
     int k = 0;
-    ImGui::ListBoxHeader("Shell Count");
-    for(auto shellCountStr : shellCountList)
+    if (ImGui::ListBoxHeader("Shell Count"))
     {
-        if(ImGui::Selectable(shellCountStr.c_str(), selectedId == k ? true : false))
+        for (auto shellCountStr : shellCountList)
         {
-            selectedId = k;
-            shellCount = pow(2, selectedId);
+            if (ImGui::Selectable(shellCountStr.c_str(), selectedId == k ? true : false))
+            {
+                selectedId = k;
+                shellCount = pow(2, selectedId);
+            }
+            k++;
         }
-        k++;
+        ImGui::ListBoxFooter();
     }
-    ImGui::ListBoxFooter();
+   
     
     ImGui::SliderFloat("Hair Length: ", &hairLength, 0.001f, .1f, "%.5f", 0);
     ImGui::SliderFloat("Hair Gravity: ", &gravityFactor, 0.001f, 0.1f, "%.5f", 0);

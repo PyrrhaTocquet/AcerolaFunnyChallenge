@@ -230,7 +230,7 @@ void VulkanScene::createGeometryBuffers()
 	std::vector<uint32_t> indices;
 	std::vector<Vertex> vertices;
 
-	uint i = 0;
+	uint32_t i = 0;
 	for(auto& model: m_models)
 	{
 		for (auto& mesh: model->getMeshes())
