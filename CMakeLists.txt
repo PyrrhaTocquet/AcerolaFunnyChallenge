@@ -5,7 +5,10 @@ project(${NAME})
 
 set(CMAKE_CXX_STANDARD 20)
 
-set(Vulkan_INCLUDE_DIR "F:/Programmation/SDKs/Vulkan")
+if(WIN32)
+	set(Vulkan_INCLUDE_DIR "F:/Programmation/SDKs/Vulkan")
+endif()
+
 find_package(Vulkan REQUIRED)
 
 if (UNIX AND NOT APPLE)
